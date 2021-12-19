@@ -51,6 +51,7 @@ img {
     --white-color: #FFFFFF;
     --notwhite-color: #F5F4FA;
     --almost-black-color: #212121;
+    --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container {
@@ -101,6 +102,8 @@ img {
 }
 
 .nav-sections {
+    position: relative;
+
     padding-top: 32px;
     padding-bottom: 32px;
     
@@ -108,7 +111,21 @@ img {
     font-size: 14px;
     line-height: 1.14;
     letter-spacing: 0.02em;
-    color: var(--almost-black-color); 
+    color: var(--almost-black-color);
+    
+    transition: color 250ms var(--animation-timing)
+}
+
+.active::after {
+    position: absolute;
+
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    bottom: 0px;
+    background-color: var(--blue-color);
+    border-radius: 2px;;
 }
 
 .nav-sections.active,
@@ -143,6 +160,8 @@ img {
     letter-spacing: 0.02em;
     color: var(--gray-color);
     fill: var(--gray-color);
+
+    transition: color 250ms var(--animation-timing), fill 250ms var(--animation-timing);
 }
 
 .main-mail-header:hover,
@@ -165,7 +184,7 @@ img {
     background-repeat: no-repeat;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1600px;
+    width: 1600px;
     padding-top: 200px;
     padding-bottom: 200px;
 }
@@ -194,7 +213,7 @@ img {
     padding-left: 32px;
     padding-right: 32px;
 
-    background: var(--blue-color);
+    background-color: var(--blue-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     font-weight: bold;
@@ -205,11 +224,57 @@ img {
     text-align: center;
     letter-spacing: 0.06em;
     color: var(--white-color);
+
+    transition: background-color 250ms var(--animation-timing);
 }
 
 .main-page-face-button:focus,
 .main-page-face-button:hover {
-    background: #188CE8;
+    background-color: #188CE8;
+}
+
+.backdrop.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 250ms var(--animation-timing), visibility 250ms var(--animation-timing);
+}
+
+.modal {
+    position: absolute;
+    min-width: 528px;
+    min-height: 581px;
+    background-color: var(--white-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--white-color);
+    background-image: url('../images/vector.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 
 /* Характеристики*/
@@ -280,6 +345,31 @@ img {
     margin-left: 30px;
 }
 
+.occupation-thumb {
+    position: relative;
+}
+
+.occupation-box-name {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(47, 48, 58, 0.8);
+}
+
+.occupation-box-name p {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--white-color);
+}
+
 /* Раздел команды*/
 .main-page-team {
     background: var(--notwhite-color);
@@ -345,6 +435,8 @@ img {
     justify-content: center;
     align-items: center;
     fill: var(--gray-color-2);
+
+    transition: background-color 250ms var(--animation-timing), fill 250ms var(--animation-timing);
 }
 
 .link-social:hover,
@@ -374,8 +466,11 @@ img {
 
     border: 1px solid var(--gray-color-2);
     fill: var(--gray-color-2);
+
+    transition: border 250ms var(--animation-timing), fill 250ms var(--animation-timing);
 }
 
+.client-link:focus,
 .client-link:hover {
     border-color: var(--blue-color);
     fill: var(--blue-color);
@@ -402,7 +497,7 @@ img {
     padding-left: 22px;
     padding-right: 22px;
 
-    background: var(--notwhite-color);
+    background-color: var(--notwhite-color);
     border-radius: 4px;
     border-style: none;
     font-weight: 500;
@@ -410,11 +505,15 @@ img {
     line-height: 1.62;
     text-align: center;
     letter-spacing: 0.03em;
+
+    transition: background-color 250ms var(--animation-timing), 
+            box-shadow 250ms var(--animation-timing),
+            color 250ms var(--animation-timing);
 }
 
 .portfolio-categories-button:focus,
 .portfolio-categories-button:hover {
-    background: var(--blue-color);
+    background-color: var(--blue-color);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
     color: var(--white-color);
 }
@@ -438,10 +537,43 @@ img {
 
 .portfolio-variants-link {
     display: block;
+
+    transition: box-shadow 250ms var(--animation-timing);
 }
 .portfolio-variants-link:hover,
 .portfolio-variants-link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio-variants-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-variants-overlay {
+    position: absolute;
+    padding: 63px 24px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(33, 150, 243, 0.9);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 250ms var(--animation-timing), opacity 250ms var(--animation-timing);
+}
+
+.portfolio-variants-link:hover .portfolio-variants-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.variants-thumb-text {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.56;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
 }
 
 .variants-bottom {
@@ -527,7 +659,9 @@ img {
     font-size: 14px;
     line-height: 1.71;
     letter-spacing: 0.03em;
-    color: rgba(255, 255, 255, 0.6); 
+    color: rgba(255, 255, 255, 0.6);
+    
+    transition: color 250ms var(--animation-timing);
 }
 
 .main-mail-footer:hover,
@@ -575,8 +709,11 @@ img {
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.1);
     fill: var(--white-color);
+
+    transition: background-color 250ms var(--animation-timing);
 }
 
+.footer-link-social:focus,
 .footer-link-social:hover {
     background-color: var(--blue-color);
 }

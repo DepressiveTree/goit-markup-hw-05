@@ -53,7 +53,13 @@
         <section class="main-page-face">
             <div class="container">
                 <h1 class="main-page-face-text">Эффективные решения для вашего бизнеса</h1>
-                <button type="button" class="main-page-face-button">Заказать услугу</button>
+                <button type="button" class="main-page-face-button" data-modal-open>Заказать услугу</button>
+                <div class="backdrop is-hidden" data-modal>
+                    <div class="modal">
+                        <button class="button-modal-close" data-modal-close>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -107,13 +113,28 @@
                 <h2 class="main-page-titles">Чем мы занимаемся</h2>
                 <ul class="occupation-list">
                     <li class="occupation-li">
-                        <img src="images/img1.jpg" alt="програмирование" width="370">
+                        <div class="occupation-thumb">
+                        <img src="images/img1.jpg" alt="програмирование" width="370">    
+                            <div class="occupation-box-name">
+                                <p>ДЕКСТОПНЫЕ ПРИЛОЖЕНИЯ</p>
+                            </div>      
+                        </div>              
                     </li> 
                     <li class="occupation-li">
+                        <div class="occupation-thumb">
                         <img src="images/img2.jpg" alt="телефонирование" width="370">
+                            <div class="occupation-box-name">
+                                <p>МОБИЛЬНЫЕ ПРИЛОЖЕНИЯ</p>
+                            </div>      
+                        </div>
                     </li>
                     <li class="occupation-li">
+                        <div class="occupation-thumb">
                         <img src="images/img3.jpg" alt="графинирование" width="370"> 
+                            <div class="occupation-box-name">
+                                <p>ДИЗАЙНЕРСКИЕ РЕШЕНИЯ</p>
+                            </div>      
+                        </div>
                     </li>
                 </ul> 
             </div>              
@@ -382,5 +403,6 @@
             </div>
         </div>  
     </footer>
+    <script src="./js/modal.js"></script>
 </body>
 </html>
