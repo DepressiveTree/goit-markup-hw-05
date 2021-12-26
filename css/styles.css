@@ -73,7 +73,6 @@ img {
 .header-div {
     display: flex;
     align-items: center;
-    min-height: 80px;
 }
 
 .main-page-link {
@@ -103,6 +102,7 @@ img {
 
 .nav-sections {
     position: relative;
+    display: block;
 
     padding-top: 32px;
     padding-bottom: 32px;
